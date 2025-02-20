@@ -45,36 +45,82 @@ networks.forEach(network => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const testimonials = document.querySelectorAll('.testimonial');
-    const dots = document.querySelectorAll('.dot');
+    const container = document.querySelector('.testimonial-container');
+    const wrapper = container.querySelector('.testimonial-wrapper');
+    const testimonials = container.querySelectorAll('.testimonial');
+    const dots = container.querySelectorAll('.dot');
+    
     let currentIndex = 0;
+    let startX = 0;
+    let isDragging = false;
+    let startScrollLeft = 0;
 
-    function showTestimonial(index) {
-        // Hide all testimonials and remove active dots
+    // Update active testimonial and dots
+    function updateActiveTestimonial(index) {
+        // Reset active states
         testimonials.forEach(testi => testi.classList.remove('active'));
         dots.forEach(dot => dot.classList.remove('active'));
 
-        // Show current testimonial and activate its dot
+        // Set new active states
         testimonials[index].classList.add('active');
         dots[index].classList.add('active');
     }
 
-    // Dot click event
+    // Dot navigation
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
             currentIndex = index;
-            showTestimonial(currentIndex);
+            updateActiveTestimonial(currentIndex);
+            wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
         });
+    });
+
+    // Drag functionality
+    container.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.pageX - wrapper.offsetLeft;
+        startScrollLeft = wrapper.scrollLeft;
+        container.style.cursor = 'grabbing';
+    });
+
+    container.addEventListener('mouseleave', () => {
+        isDragging = false;
+        container.style.cursor = 'grab';
+    });
+
+    container.addEventListener('mouseup', () => {
+        isDragging = false;
+        container.style.cursor = 'grab';
+    });
+
+    container.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+
+        e.preventDefault();
+        const x = e.pageX - wrapper.offsetLeft;
+        const walk = (x - startX) * 2; // Multiply by 2 to increase drag sensitivity
+        
+        // Determine direction and next index
+        if (walk < -50 && currentIndex < testimonials.length - 1) {
+            currentIndex++;
+        } else if (walk > 50 && currentIndex > 0) {
+            currentIndex--;
+        }
+
+        // Update active testimonial and transform
+        updateActiveTestimonial(currentIndex);
+        wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
     });
 
     // Auto-rotate testimonials
     function rotateTestimonials() {
         currentIndex = (currentIndex + 1) % testimonials.length;
-        showTestimonial(currentIndex);
+        updateActiveTestimonial(currentIndex);
+        wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
 
-    // Initial display
-    showTestimonial(0);
+    // Initial setup
+    updateActiveTestimonial(0);
 
     // Auto-rotate every 3 seconds
     setInterval(rotateTestimonials, 3000);
