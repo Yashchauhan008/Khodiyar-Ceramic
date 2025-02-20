@@ -40,7 +40,7 @@
     margin-top: 5px;
     font-size: 14px;
     text-align: center;
-    color: #333;
+    color: #B3B3B3;
     opacity: 0.8;
 }
 
@@ -106,5 +106,5 @@
     transition: background-color 0.3s ease;
 }
 .dot.active {
-    background-color: orange;
+    background-color: var(--color-3);
 }

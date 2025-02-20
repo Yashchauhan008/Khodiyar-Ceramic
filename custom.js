@@ -123,5 +123,5 @@ document.addEventListener('DOMContentLoaded', () => {
     updateActiveTestimonial(0);
 
     // Auto-rotate every 3 seconds
-    setInterval(rotateTestimonials, 3000);
+    setInterval(rotateTestimonials, 5000);
 });
