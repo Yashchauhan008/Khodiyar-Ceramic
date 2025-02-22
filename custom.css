@@ -13,6 +13,17 @@
     gap: 20px;
     justify-content: center;
 }
+@media screen and (max-width:920px) {
+    .flag-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    .flag {
+        width: 32px;
+        height: 24px;
+
+    }
+
+}
 .network {
     display: flex;
     flex-direction: column;
@@ -107,4 +118,15 @@
 }
 .dot.active {
     background-color: var(--color-3);
+}
+
+.navbar-brand img{
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+#menu{
+    color:#fff;
 }
