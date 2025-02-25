@@ -146,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
             isScrolling = true; // Scrolling vertically
         } else {
             event.preventDefault(); // Prevent default behavior (scrolling)
+            homeSlider.scrollLeft -= moveX; // Move the slider
         }
     });
 
