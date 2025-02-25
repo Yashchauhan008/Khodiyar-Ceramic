@@ -135,17 +135,16 @@
 
 
 .home-slider {
-    overflow: hidden; /* Prevents overflow */
+    overflow: auto; /* Allow scrolling */
     display: flex; /* Allows items to be flexibly positioned */
-    flex-direction: column; /* Stack items vertically */
+    flex-direction: row; /* Align items in a row */
+    touch-action: pan-y; /* Allow vertical scrolling */
 }
 
 .slider-item {
-    flex: 0 0 auto; /* Prevents items from shrinking */
-    width: 100%; /* Ensures full width */
+    flex: 0 0 100%; /* Each item takes full width */
     height: 100vh; /* Full viewport height */
 }
-
 @media (max-width: 768px) {
     .slider-item {
         height: 80vh; /* Adjust height for mobile */

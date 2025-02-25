@@ -125,3 +125,34 @@ document.addEventListener('DOMContentLoaded', () => {
     // Auto-rotate every 3 seconds
     setInterval(rotateTestimonials, 5000);
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const homeSlider = document.querySelector('.home-slider');
+    let startX, startY, isScrolling;
+
+    homeSlider.addEventListener('touchstart', function(event) {
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+        isScrolling = false; // Reset scrolling flag
+    });
+
+    homeSlider.addEventListener('touchmove', function(event) {
+        const moveX = event.touches[0].clientX - startX;
+        const moveY = event.touches[0].clientY - startY;
+
+        // Check if the movement is mostly vertical or horizontal
+        if (Math.abs(moveY) > Math.abs(moveX)) {
+            isScrolling = true; // Scrolling vertically
+        } else {
+            event.preventDefault(); // Prevent default behavior (scrolling)
+        }
+    });
+
+    homeSlider.addEventListener('touchend', function(event) {
+        if (!isScrolling) {
+            // If not scrolling, allow carousel to handle the touch event
+            // You can add any specific actions here if needed
+        }
+    });
+});
