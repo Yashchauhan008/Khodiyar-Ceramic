@@ -154,3 +154,15 @@
 .home-slider {
     touch-action: pan-y; /* Allows vertical scrolling */
 }
+
+
+.scrollsaver{
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    background-color: transparent;
+    height: 80vh;
+    margin-top: 10vh;
+    width: 100vw;
+    z-index: 10000;
+}
