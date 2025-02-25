@@ -130,3 +130,28 @@
 #menu{
     color:#fff;
 }
+
+
+
+
+.home-slider {
+    overflow: hidden; /* Prevents overflow */
+    display: flex; /* Allows items to be flexibly positioned */
+    flex-direction: column; /* Stack items vertically */
+}
+
+.slider-item {
+    flex: 0 0 auto; /* Prevents items from shrinking */
+    width: 100%; /* Ensures full width */
+    height: 100vh; /* Full viewport height */
+}
+
+@media (max-width: 768px) {
+    .slider-item {
+        height: 80vh; /* Adjust height for mobile */
+    }
+}
+
+.home-slider {
+    touch-action: pan-y; /* Allows vertical scrolling */
+}
