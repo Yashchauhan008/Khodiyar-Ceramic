@@ -11369,7 +11369,7 @@ Services Style
   display: inline-block;
   text-align: center;
   line-height: 190px;
-  background-color: #7a6ad8;
+  background-color: var(--color-3);
   border-radius: 50%;
   position: absolute;
   right: 0;
@@ -11377,14 +11377,14 @@ Services Style
 }
 
 .services .service-item .icon img {
-  max-width: 86px;
+  max-width: 80px;
   transition: all .2s;
 }
 
 .services .service-item .main-content {
   border-radius: 25px;
   padding: 80px 30px 50px 30px;
-  background-color: #f1f0fe;
+  background-color: #000;
   margin-bottom: 30px;
   margin-right: 80px;
   transition: all .4s;
