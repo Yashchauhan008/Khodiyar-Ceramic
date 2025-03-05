@@ -11342,7 +11342,7 @@ textarea.form-control {
 @media screen and (max-width:500px) {
   #glob{
     scale: 1;
-    width: 90%;
+    width: 100%;
   }
 }
 
