@@ -22,7 +22,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 const glob = document.getElementById("glob")
 glob.appendChild(renderer.domElement);
 
-camera.position.z = 250;
+camera.position.z = 400;
 camera.position.y = 100;
 
 const controls = new TrackballControls(camera, renderer.domElement);
@@ -31,6 +31,9 @@ controls.maxDistance = 600;
 controls.minDistance = 150;
 controls.rotateSpeed = 2;
 
+if(window.innerWidth>700){
+    camera.position.z=250
+}
 const group = new THREE.Group();
 scene.add(group);
 group.rotation.y = 2;
