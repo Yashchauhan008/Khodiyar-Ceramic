@@ -11407,7 +11407,11 @@ Services Style
 }
 
 
-
+@media screen and (max-width:387px) {
+  .navbar-brand{
+    font-size: 15px;
+  }
+}
 
 
 
