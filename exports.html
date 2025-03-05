@@ -36,7 +36,7 @@
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="index.html"><img src="./images/KClogo.png"/>Khodiyar Ceramic</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" onclick="scrollsavertog()" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 
@@ -53,7 +53,7 @@
 	    </div>
 	  </nav>
     <!-- END nav -->
-    
+    <div class="scrollsaver" id="scrollsaver"></div>
     <section class="home-slider js-fullheight owl-carousel">
       <div class="slider-item js-fullheight" style="background-image:url(images/bg_1.jpg);">
       	<div class="overlay"></div>
@@ -235,5 +235,23 @@
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
     
+
+  <script>
+    var stoggle = "false"
+    var scrollsaver = document.getElementById("scrollsaver")
+    function scrollsavertog(){
+      // alert("hello")
+      if(stoggle=="false"){
+        scrollsaver.style.display="none"
+        stoggle="true"
+      }
+      else{
+        scrollsaver.style.display="block"
+        stoggle="false"
+      }
+    }
+  </script>
+
+
   </body>
 </html>

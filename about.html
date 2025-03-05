@@ -36,7 +36,7 @@
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="index.html"><img src="./images/KClogo.png"/>Khodiyar Ceramic</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	      <button class="navbar-toggler" onclick="scrollsavertog()" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 
@@ -53,7 +53,7 @@
 	    </div>
 	  </nav>
     <!-- END nav -->
-    
+    <div class="scrollsaver" id="scrollsaver"></div>
     <section class="home-slider js-fullheight owl-carousel">
       <div class="slider-item js-fullheight" style="background-image:url(images/bg_1.jpg);">
       	<div class="overlay"></div>
@@ -548,7 +548,7 @@
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-  <script src="/custom.js"></script>
+  <script src="./custom.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/popper.min.js"></script>
@@ -566,6 +566,22 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
+
+  <script>
+    var stoggle = "false"
+    var scrollsaver = document.getElementById("scrollsaver")
+    function scrollsavertog(){
+      // alert("hello")
+      if(stoggle=="false"){
+        scrollsaver.style.display="none"
+        stoggle="true"
+      }
+      else{
+        scrollsaver.style.display="block"
+        stoggle="false"
+      }
+    }
+  </script>
     
   </body>
 </html>
