@@ -11339,7 +11339,11 @@ textarea.form-control {
   position: relative;
 }
 
-
+@media screen and (max-width:500px) {
+  #glob{
+    scale: 0.9;
+  }
+}
 
 
 
