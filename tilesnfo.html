@@ -39,6 +39,149 @@
 
     <link rel="icon" href="./images/KClogo.png" type="image/x-icon" />
 
+    <style>
+
+      .tile-calc{
+       margin-top: 100px ; 
+       margin-bottom: 100px ; 
+      }
+              .calculator-card, .visualization-card, .tips-card {
+            background-color: #000;
+            border: 1px solid #444;
+            border-radius: 10px;
+        }
+        
+        .title-bar {
+            background-color: #fff;
+            color: #000;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+        
+        .form-control, .form-select {
+            background-color: #fff;
+            color: #000;
+            border-radius: 0;
+            border-radius: 10px;
+        }
+        
+        .calculate-btn {
+            background-color: transparent;
+            color: #fff;
+            border: 1px solid #fff;
+            border-radius: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            width: 150px;
+            border-radius: 10px;
+        }
+        
+        .calculate-btn:hover {
+            background-color: #fff;
+            color: #000;
+        }
+        
+        .diagram {
+            position: relative;
+            height: 100%;
+            min-height: 250px;
+        }
+        
+        .box {
+            border: 1px solid #fff;
+            width: 60%;
+            height: 60%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .dimension-line {
+            position: absolute;
+            background-color: #fff;
+        }
+        
+        .dimension-label {
+            position: absolute;
+            color: #fff;
+            font-size: 0.8rem;
+        }
+        
+        /* X dimension line - top */
+        .x-line {
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 1px;
+            width: 60%;
+        }
+        
+        .x-line::before, .x-line::after {
+            content: '';
+            position: absolute;
+            height: 8px;
+            width: 1px;
+            background-color: #fff;
+            top: -3.5px;
+        }
+        
+        .x-line::before {
+            left: 0;
+        }
+        
+        .x-line::after {
+            right: 0;
+        }
+        
+        .x-label {
+            top: 5px;
+            left: 50%;
+            transform: translateY(-50%);
+        }
+        
+        /* Y dimension line - left */
+        .y-line {
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 60%;
+        }
+        
+        .y-line::before, .y-line::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 1px;
+            background-color: #fff;
+            left: -3.5px;
+        }
+        
+        .y-line::before {
+            top: 0;
+        }
+        
+        .y-line::after {
+            bottom: 0;
+        }
+        
+        .y-label {
+            left: 5px;
+            top: 50%;
+            transform: translateX(-50%) rotate(-90deg);
+        }
+        
+        .note {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+    </style>
+
   </head>
   <body>
 
@@ -79,6 +222,95 @@
         </div>
       </section>
 
+      <div class="container py-4 tile-calc">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="calculator-card p-4">
+                    <div class="title-bar mb-4">Box Calculation</div>
+                    
+                    <form id="calculator-form">
+                        <div class="mb-3 row align-items-center">
+                            <label for="length" class="col-sm-2 col-form-label">Length</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="length" min="0" step="0.01">
+                            </div>
+                            <div class="col-sm-2">
+                                <span class="form-text text-white">Feet</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3 row align-items-center">
+                            <label for="width" class="col-sm-2 col-form-label">Width</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="width" min="0" step="0.01">
+                            </div>
+                            <div class="col-sm-2">
+                                <span class="form-text text-white">Feet</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4 row align-items-center">
+                            <label for="tile-size" class="col-sm-2 col-form-label">Tiles Size</label>
+                            <div class="col-sm-10">
+                                <select class="form-select" id="tile-size">
+                                    <option value="600X1200">600X1200 MM</option>
+                                    <option value="600X600">600X600 MM</option>
+                                    <option value="300X600">300X600 MM</option>
+                                    <option value="300X300">300X300 MM</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mb-4">
+                            <button type="button" class="calculate-btn btn" id="calculate-btn">Calculate</button>
+                        </div>
+                    </form>
+                    
+                    <div class="title-bar mb-4">Calculations</div>
+                    
+                    <div class="mb-3 row align-items-center border border-secondary p-2" style="border-radius: 10px;">
+                        <label for="total-area" class="col-sm-4 col-form-label">Total Area Covered</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="total-area" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3 row align-items-center border border-secondary p-2" style="border-radius: 10px;">
+                        <label for="required-tiles" class="col-sm-4 col-form-label">Required Tiles</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="required-tiles" readonly>
+                        </div>
+                    </div>
+                    
+                    <p class="note mt-3">This may very on basis of your actual need.</p>
+                    <p class="note">This is only approx calculation.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="visualization-card p-3 mb-4">
+                    <div class="diagram">
+                        <div class="dimension-line x-line"></div>
+                        <div class="dimension-label x-label">X FT</div>
+                        
+                        <div class="dimension-line y-line"></div>
+                        <div class="dimension-label y-label">Y FT</div>
+                        
+                        <div class="box"></div>
+                    </div>
+                </div>
+                
+                <div class="tips-card p-3">
+                    <h5 class="mb-3">Tips</h5>
+                    <p>Length and Width Dimensions are in feet.</p>
+                    <p>1 Feet = 0.3048 Meter</p>
+                    <p>1 Meter = 3.28084 Feet</p>
+                    <p>1 Meter = 100 Centimeters</p>
+                    <p>1 Centimeters = 0.01 Meter</p>
+                </div>
+            </div>
+        </div>
+    </div>
       <footer class="ftco-footer ftco-bg-dark ftco-section">
         <div class="container">
           <div class="row mb-5">
@@ -178,6 +410,39 @@
       }
     }
   </script>
+
+<script>
+  document.getElementById('calculate-btn').addEventListener('click', function() {
+      // Get input values
+      const length = parseFloat(document.getElementById('length').value) || 0;
+      const width = parseFloat(document.getElementById('width').value) || 0;
+      const tileSize = document.getElementById('tile-size').value;
+      
+      // Calculate total area in square feet
+      const totalArea = length * width;
+      
+      // Parse tile dimensions from the selected option
+      const [tileWidth, tileLength] = tileSize.split('X').map(dim => parseInt(dim));
+      
+      // Convert tile dimensions from mm to feet
+      const tileLengthFeet = tileLength / 304.8; // 1 foot = 304.8 mm
+      const tileWidthFeet = tileWidth / 304.8;
+      
+      // Calculate tile area in square feet
+      const tileArea = tileLengthFeet * tileWidthFeet;
+      
+      // Calculate required number of tiles (round up)
+      const requiredTiles = Math.ceil(totalArea / tileArea);
+      
+      // Update results
+      document.getElementById('total-area').value = totalArea.toFixed(2) + ' sq ft';
+      document.getElementById('required-tiles').value = requiredTiles;
+      
+      // Update visualization labels
+      document.querySelector('.x-label').textContent = length + ' FT';
+      document.querySelector('.y-label').textContent = width + ' FT';
+  });
+</script>
 
 
   </body>
